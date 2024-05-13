@@ -1,2 +1,2 @@
 main = int(12)
-penis
+penis = 14
