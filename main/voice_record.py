@@ -1,6 +1,8 @@
 from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
+import re
+import keyboard
 
 model = Model(r"C:/Users/User/Desktop/PROG/.vscode/voice_helper/vosk-model-small-ru-0.22") # полный путь к модели
 rec = KaldiRecognizer(model, 16000)
@@ -18,16 +20,14 @@ stream.start_stream()
 
 def Record():
     b = 0
-    while  True:
-        data = stream.read(8000)
+    while  b < 5:
+        data = stream.read(16000)
         if len(data) == 0:
             break
 
-        print(rec.Result() if rec.AcceptWaveform(data) else rec.PartialResult())
+        print(rec.Result() if rec.AcceptWaveform(data) else "Услышал: ", re.sub('[{|}|partial|"|:]', '', rec.PartialResult()))
 
-        print(rec.FinalResult())
-        text = rec.FinalResult()
-        print(text)
-    return(text)
+        print("Получил: ", re.sub('[{|}|text|"|:]', '', rec.FinalResult()))
+        b += 1
+    return()
 
-Record()
