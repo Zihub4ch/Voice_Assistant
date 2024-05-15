@@ -2,7 +2,7 @@ from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
 
-model = Model(r"C:/Users/User/Desktop/PROG/.vscode/voice_helper/vosk-model-small-ru-0.22") # полный путь к модели
+model = Model("C:/Users/User/Desktop/PROG/.vscode/voice_helper/vosk-model-small-ru-0.22") # полный путь к модели
 rec = KaldiRecognizer(model, 16000)
 p = pyaudio.PyAudio()
 

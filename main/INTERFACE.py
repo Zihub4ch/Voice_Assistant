@@ -16,6 +16,6 @@ activate = tk.Label(window, text = "Включить голосового пом
 activate.place(x = 360, y = 30)
 
 Entertext = tk.Entry(fg = "black", width = 50)
-Entertext.place(x = 220, y = 690)
+Entertext.place(x = 360, y = 480)
 
 window.mainloop()
