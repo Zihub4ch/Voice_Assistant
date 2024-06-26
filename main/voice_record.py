@@ -2,8 +2,11 @@ from vosk import Model, KaldiRecognizer
 import os
 import pyaudio
 import re
-import keyboard
 import time
+import keyboard
+import webbrowser
+import subprocess
+import pyautogui
 
 model = Model(r"C:/Users/User/Desktop/PROG/.vscode/voice_helper/vosk-model-small-ru-0.22") # полный путь к модели
 rec = KaldiRecognizer(model, 16000)
@@ -25,9 +28,7 @@ def Record():
         data = stream.read(16000)
         if len(data) == 0:
             break
-        # print(rec.Result() if rec.AcceptWaveform(data) else "Услышал: ", re.sub('[{|}|partial|"|:]', '', rec.PartialResult()))
-        # print("Получил: ", re.sub('[{|}|text|"|:]', '', rec.FinalResult()))
-        text = rec.Result() if rec.AcceptWaveform(data) else "Услышал: ", re.sub('[{|}|partial|"|:]', '', rec.PartialResult())  
+        text = rec.Result() if rec.AcceptWaveform(data) else "", re.sub('[{|}|partial|"|:]', '', rec.PartialResult())  
         return(text)
     
 def commands():
@@ -37,14 +38,20 @@ def commands():
         text_filt = re.sub('[{|}|text|"|:]', '', text_to_str) 
         print("Получил: ", text_filt)
         
-        if "скрин" in text_filt:
-            keyboard.press('win+shift+s')
-            time.sleep(0.1)
-            keyboard.release('win+shift+s')
+        if "скрин" in text_filt or "скриншот" in  text_filt:
+            keyboard.press_and_release("win+shift+s")
         
-        elif "поставь" in text_filt:
-            keyboard.press('ctrl+v')
-            time.sleep(0.05)
-            keyboard.release('ctrl+v')
+        elif "вставь" in text_filt or "вставить" in text_filt or "ставить" in text_filt:
+            keyboard.press_and_release("ctrl+v")
+        
+        elif "браузер" in text_filt:
+            browser_path = "C:/Users/User/AppData/Local/Programs/Opera GX/launcher.exe"
+            webbrowser.register('operaGX', None, webbrowser.BackgroundBrowser(browser_path))
+            url = "https://ya.ru"
+            webbrowser.get('operaGX',).open(url)
+        
+        elif "телеграм" in text_filt:
+            telegram_path = "C:/Users/User/AppData/Roaming/Telegram Desktop/Telegram.exe"
+            subprocess.call([telegram_path])
 
 commands() 

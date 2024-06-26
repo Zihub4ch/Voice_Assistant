@@ -1,0 +1,13 @@
+browser_open:
+  voice_command: браузер
+  browser_path: C:/Users/User/AppData/Local/Programs/Opera GX/launcher.exe
+  url: https://ya.ru
+
+keyboard:
+  keyboard_command1:
+    voice_command: скриншот
+    hotkey: win+shift+s
+  
+  keyboard_command2:
+    voice_command: вставь
+    hotkey: ctrl+v
