@@ -58,6 +58,9 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "Создатели"))
         self.pushButton_5.setText(_translate("MainWindow", "Выход"))
 
+MainWindow w;
+w.show()
+
 
 if __name__ == "__main__":
     import sys
