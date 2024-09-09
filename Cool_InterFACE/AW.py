@@ -9,7 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_AnotherWindow(object):
+class AnotherWindow1(object):
     def setupUi(self, AnotherWindow):
         AnotherWindow.setObjectName("AnotherWindow")
         AnotherWindow.resize(949, 600)
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     AnotherWindow = QtWidgets.QWidget()
-    ui = Ui_AnotherWindow()
+    ui = AnotherWindow1()
     ui.setupUi(AnotherWindow)
     AnotherWindow.show()
     sys.exit(app.exec())

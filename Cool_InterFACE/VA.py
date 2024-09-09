@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+from AW import AnotherWindow1
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -58,8 +58,22 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "Создатели"))
         self.pushButton_5.setText(_translate("MainWindow", "Выход"))
 
-MainWindow w;
-w.show()
+
+    def show_MainWindow(self):
+        self.ui.pushButton_3.clicked.connect(self.show_AnotherWindow)
+        self.ui.pushButton_3.clicked.connect(self.close)
+
+    def show_AnotherWindow(self):
+        self.ui2 = AnotherWindow()
+        self.ui2.show()
+
+
+class AnotherWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(AnotherWindow, self).__init__()
+        self.ui2 = AnotherWindow1()
+        self.ui2.setupUi(self)
+
 
 
 if __name__ == "__main__":
